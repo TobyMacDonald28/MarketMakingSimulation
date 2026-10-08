@@ -34,7 +34,7 @@ struct TraderAccount {
 class OrderBook {
 private:
     
-    // Bids are sorted g,eatest to least using std::greater so the highest buy offer sits at the top
+    // Bids are sorted greatest to least using std::greater so the highest buy offer sits at the top
     std::map<double, std::list<Order>, std::greater<double>> bids;
     
     // Asks are sorted least to greatest by default so the cheapest sell offer sits at the top

@@ -40,3 +40,10 @@ target_link_libraries(TraderTests PRIVATE
     pybind11::embed 
     ${Python3_LIBRARIES}
 )
+
+add_executable(OrderBookBenchmark cpp_engine/benchmark.cpp cpp_engine/order_book.cpp)
+target_link_libraries(OrderBookBenchmark PRIVATE Threads::Threads)
+# Benchmarks are meaningless unoptimised, so force -O3 regardless of CMAKE_BUILD_TYPE
+if(NOT MSVC)
+    target_compile_options(OrderBookBenchmark PRIVATE -O3)
+endif()

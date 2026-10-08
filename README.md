@@ -1,7 +1,7 @@
 Multithreaded C++ / Python Trading Engine
 A high-performance, deterministic Limit Order Book (LOB) matching engine built in modern C++17, seamlessly integrated with a Python machine learning backend via Pybind11.
 
-Achieves ~568ns latency and 1.75M+ Operations Per Second (OPS) while guaranteeing ACID-like financial consistency across concurrent trading bots.
+Achieves ~7.5M Operations Per Second (OPS) with 84ns median and <500ns p99 latency on a single-threaded mixed market-maker workload, while guaranteeing ACID-like financial consistency across concurrent trading bots.
 
 
 
@@ -96,3 +96,12 @@ Bash
 cd build
 ./TraderTests
 ./OrderBookTests
+
+
+⏱️ Benchmarking
+A standalone benchmark measures throughput and latency percentiles (p50/p99/p99.9) for passive adds, cancels, aggressive fills, multi-level sweeps, market data reads, and a mixed market-maker workload on 1–8 threads. It is always compiled with -O3. Pass an optional op count (default 1,000,000):
+
+Bash
+cd build
+make OrderBookBenchmark
+./OrderBookBenchmark 1000000
